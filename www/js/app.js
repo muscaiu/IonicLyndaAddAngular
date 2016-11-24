@@ -5,31 +5,43 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', ['ionic'])
 
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    if(window.cordova && window.cordova.plugins.Keyboard) {
-      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-      // for form inputs)
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+  .run(function ($ionicPlatform) {
+    $ionicPlatform.ready(function () {
+      if (window.cordova && window.cordova.plugins.Keyboard) {
+        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+        // for form inputs)
+        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 
-      // Don't remove this line unless you know what you are doing. It stops the viewport
-      // from snapping when text inputs are focused. Ionic handles this internally for
-      // a much nicer keyboard experience.
-      cordova.plugins.Keyboard.disableScroll(true);
-    }
-    if(window.StatusBar) {
-      StatusBar.styleDefault();
-    }
-  });
-})
-
-//Adding controller
-.controller('ListController',['$scope', '$http', function($scope, $http){
-  $http.get('http://54.229.174.169:8080/api/message').success(function(data){
-    $scope.artists = data
-    $scope.moveItem = function(item, fromIndex, toIndex){
-      $scope.artists.splice(fromIndex,1)
-      $scope.artists.splice(toIndex, 0, item)
-    }
+        // Don't remove this line unless you know what you are doing. It stops the viewport
+        // from snapping when text inputs are focused. Ionic handles this internally for
+        // a much nicer keyboard experience.
+        cordova.plugins.Keyboard.disableScroll(true);
+      }
+      if (window.StatusBar) {
+        StatusBar.styleDefault();
+      }
+    });
   })
-}])
+
+  //Adding controller
+  .controller('ListController', ['$scope', '$http', function ($scope, $http) {
+    $http.get('http://54.229.174.169:8080/api/message').success(function (data) {
+
+      $scope.artists = data
+
+      $scope.onItemDelete = function (item) {
+        console.log('onItemDelete')
+        $scope.artists.splice($scope.artists.indexOf(item), 1)
+      }
+
+      $scope.moveItem = function (item, fromIndex, toIndex) {
+        console.log('item' + item + fromIndex + toIndex)
+        $scope.artists.splice(fromIndex, 1)
+        $scope.artists.splice(toIndex, 0, item)
+      }
+
+      $scope.onTest = function () {
+        console.log('onTest')
+      }
+    })
+  }])

@@ -36,8 +36,13 @@
     <ion-pane ng-controller='ListController'>
       <ion-header-bar class="bar-dark">
         <h1 class="title">Artist List</h1>
+        <button class="button button-icon ion-minus-circled"
+                ng-click="data.showDelete = !data.showDelete; 
+                data.showReorder = false">
+        </button>
         <button class="button button-icon ion-navicon"
-                ng-click="data.showReorder = !data.showReorder">
+                ng-click="data.showReorder = !data.showReorder;
+                data.showDelete = false">
         </button>
       </ion-header-bar>
       <div class="bar bar-subheader item-input-inset bar-light">
@@ -47,7 +52,9 @@
         </label>
       </div>
       <ion-content class="has-subheader">
-        <ion-list show-reorder="data.showReorder">
+        <ion-list 
+            show-delete="data.showDelete"
+            show-reorder="data.showReorder">
           <ion-item ng-repeat="artist in artists | filter: searchArtist"
                     class="item-thumbnail-left item-text-wrap">
             <img src="img/{{artist.msg}}.jpg" alt="{{artist.name}} Photo">
@@ -58,8 +65,12 @@
               animi facere repellendus et tempore non nostrum, aspernatur quae. 
               Non amet laboriosam dolorum maiores quis, rerum commodi.</p>
               <ion-reorder-button class="ion-navicon"
+                                  ng-click="onTest()"
                                   on-reorder="moveItem(artist, $fromIndex, $toIndex)">
               </ion-reorder-button>
+              <ion-delete-button ng-click="onDeleteItem(item)" 
+                                 class="ion-minus-circled">
+              </ion-delete-button>
           </ion-item>
         </ion-list>
       </ion-content>
