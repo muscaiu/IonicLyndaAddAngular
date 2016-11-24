@@ -30,8 +30,8 @@ angular.module('starter', ['ionic'])
       $scope.artists = data
 
       $scope.onItemDelete = function (item) {
-        //console.log('onItemDelete')
         $scope.artists.splice($scope.artists.indexOf(item), 1)
+        //console.log('onItemDelete')
       }
 
       $scope.toggleStar = function(item){
@@ -42,6 +42,13 @@ angular.module('starter', ['ionic'])
         console.log('item' + item + fromIndex + toIndex)
         $scope.artists.splice(fromIndex, 1)
         $scope.artists.splice(toIndex, 0, item)
+      }
+
+      $scope.doRefresh = function(){
+        $http.get('http://54.229.174.169:8080/api/message').success(function(data){
+          $scope.data = data
+          $scope.$broadcast('scroll.refreshComplete')
+        })
       }
 
     })

@@ -34,6 +34,7 @@
   </head>
   <body ng-app="starter">
     <ion-pane ng-controller='ListController'>
+
       <!--Header Bar-->
       <ion-header-bar class="bar-dark">
         <h1 class="title">Artist List</h1>
@@ -53,7 +54,12 @@
           <input ng-model="searchArtist" type="search" placeholder="Search">
         </label>
       </div>
+
       <ion-content class="has-subheader">
+        <!--Refresher-->
+        <ion-refresher on-refresh="doRefresh()">
+
+        </ion-refresher>
         <!--Artists List-->
         <ion-list 
             show-delete="data.showDelete"
