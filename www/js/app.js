@@ -22,3 +22,10 @@ angular.module('starter', ['ionic'])
     }
   });
 })
+
+//Adding controller
+.controller('ListController',['$scope', '$http', function($scope, $http){
+  $http.get('http://54.229.174.169:8080/api/message').success(function(data){
+    $scope.artists = data
+  })
+}])
