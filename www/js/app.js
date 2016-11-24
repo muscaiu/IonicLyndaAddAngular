@@ -30,8 +30,12 @@ angular.module('starter', ['ionic'])
       $scope.artists = data
 
       $scope.onItemDelete = function (item) {
-        console.log('onItemDelete')
+        //console.log('onItemDelete')
         $scope.artists.splice($scope.artists.indexOf(item), 1)
+      }
+
+      $scope.toggleStar = function(item){
+        item.star =! item.star
       }
 
       $scope.moveItem = function (item, fromIndex, toIndex) {
@@ -40,8 +44,5 @@ angular.module('starter', ['ionic'])
         $scope.artists.splice(toIndex, 0, item)
       }
 
-      $scope.onTest = function () {
-        console.log('onTest')
-      }
     })
   }])
