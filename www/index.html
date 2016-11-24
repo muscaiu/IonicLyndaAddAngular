@@ -33,9 +33,12 @@
     <script src="js/app.js"></script>
   </head>
   <body ng-app="starter">
-    <ion-pane>
+    <ion-pane ng-controller='ListController'>
       <ion-header-bar class="bar-dark">
         <h1 class="title">Artist List</h1>
+        <button class="button button-icon ion-navicon"
+                ng-click="data.showReorder = !data.showReorder">
+        </button>
       </ion-header-bar>
       <div class="bar bar-subheader item-input-inset bar-light">
         <label class="item-input-wrapper">
@@ -43,8 +46,8 @@
           <input ng-model="searchArtist" type="search" placeholder="Search">
         </label>
       </div>
-      <ion-content ng-controller='ListController' class="has-subheader">
-        <ion-list>
+      <ion-content class="has-subheader">
+        <ion-list show-reorder="data.showReorder">
           <ion-item ng-repeat="artist in artists | filter: searchArtist"
                     class="item-thumbnail-left item-text-wrap">
             <img src="img/{{artist.msg}}.jpg" alt="{{artist.name}} Photo">
@@ -54,6 +57,9 @@
               adipisicing elit. Accusamus reprehenderit officiis tenetur doloremque 
               animi facere repellendus et tempore non nostrum, aspernatur quae. 
               Non amet laboriosam dolorum maiores quis, rerum commodi.</p>
+              <ion-reorder-button class="ion-navicon"
+                                  on-reorder="moveItem(artist, $fromIndex, $toIndex)">
+              </ion-reorder-button>
           </ion-item>
         </ion-list>
       </ion-content>
