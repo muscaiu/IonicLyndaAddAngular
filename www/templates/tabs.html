@@ -1,10 +1,12 @@
 <!--See routing tables in app.js with parents and childs-->
 <!--The controller is also added in there-->
 <ion-tabs class="tabs-icon-top tabs-posiitive">
-    <ion-tab title="Artists" icon="ion-ios-people" href="#/tab/list">
+    <ion-tab title="Home" icon="ion-home" href="#/tab/home">
+        <!--this is displaying the home.html data-->
+        <ion-nav-view name="home-tab"></ion-nav-view>
 
+    <ion-tab title="Artists" icon="ion-ios-people" href="#/tab/list">
         <!--this is displaying the list.html data-->
-        <ion-nav-view name="list-tab"></ion-nav-view>
-    
+        <ion-nav-view name="list-tab"></ion-nav-view>    
     </ion-tab>
 </ion-tabs>
