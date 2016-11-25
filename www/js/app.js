@@ -31,11 +31,20 @@ angular.module('starter', ['ionic'])
       abstract: true, 
       templateUrl: 'templates/tabs.html'
      })
-     .state('tabs.list', {
+    .state('tabs.list', {
        url: '/list',
        views: {
          'list-tab' :{
            templateUrl: 'templates/list.html',
+           controller: 'ListController'
+         }
+       }
+     })
+    .state('tabs.detail', {
+       url: '/list/:aId',
+       views: {
+         'list-tab' :{
+           templateUrl: 'templates/detail.html',
            controller: 'ListController'
          }
        }
@@ -52,10 +61,13 @@ angular.module('starter', ['ionic'])
 })
 
   //Adding controller
-  .controller('ListController', ['$scope', '$http', function ($scope, $http) {
+  .controller('ListController', ['$scope', '$http', '$state', 
+                                     function ($scope, $http, $state) {
     $http.get('http://54.229.174.169:8080/api/message').success(function (data) {
 
       $scope.artists = data
+
+      $scope.whichartist = $state.params.aId
 
       $scope.onItemDelete = function (item) {
         $scope.artists.splice($scope.artists.indexOf(item), 1)

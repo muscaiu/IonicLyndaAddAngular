@@ -23,7 +23,10 @@
     </ion-refresher>
     <!--Artists List-->
     <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
-        <ion-item ng-class="{'star' : item.star}" ng-repeat="item in artists | filter: searchArtist" class="item-thumbnail-left item-icon-right item-text-wrap">
+        <ion-item ng-class="{'star' : item.star}" 
+                  class="item-thumbnail-left item-icon-right item-text-wrap"
+                  ng-repeat="item in artists | filter: searchArtist" 
+                  href="#/tab/list/{{item.msg}}">
             <img src="img/{{item.msg}}.jpg" alt="{{item.name}} Photo">
             <h2>{{item.msg}}</h2>
             <h3>Reknow</h3>
