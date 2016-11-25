@@ -63,9 +63,9 @@ angular.module('starter', ['ionic'])
   //Adding controller
   .controller('ListController', ['$scope', '$http', '$state', 
                                      function ($scope, $http, $state) {
-    $http.get('http://54.229.174.169:8080/api/message').success(function (data) {
+    $http.get('js/data.json').success(function (data) {
 
-      $scope.artists = data
+      $scope.artists = data.artists
 
       $scope.whichartist = $state.params.aId
 
@@ -85,7 +85,7 @@ angular.module('starter', ['ionic'])
       }
 
       $scope.doRefresh = function(){
-        $http.get('http://54.229.174.169:8080/api/message').success(function(data){
+        $http.get('js/data.json').success(function(data){
           $scope.data = data
           $scope.$broadcast('scroll.refreshComplete')
         })
